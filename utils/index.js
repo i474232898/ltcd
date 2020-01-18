@@ -32,5 +32,38 @@ module.exports = {
     }
 
     return root;
+  },
+
+  /**
+   * @param {TreeNode} root
+   * @returns {Array} arr
+   */
+  serializeTree: root => {
+    if (!root && root.val === null || root.val === undefined) {
+      return;
+    }
+    let firstLayer = [root];
+    let secondLayer = [];
+    const result = [];
+
+    while (true) {
+      if (firstLayer.length === 0) {
+        break;
+      }
+
+      firstLayer.forEach(node => {
+        if (node) {
+          result.push(node.val);
+          secondLayer.push(node.left);
+          secondLayer.push(node.right);
+        }
+
+      });
+      firstLayer = secondLayer;
+      secondLayer = [];
+    }
+
+    return result;
+    //[3,9,20,null,null,15,7]
   }
 }

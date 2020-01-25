@@ -65,5 +65,21 @@ module.exports = {
 
     return result;
     //[3,9,20,null,null,15,7]
-  }
+  },
+
+  /**
+   * @param {TreeNode} root
+   * @returns {Array} undefined
+   */
+  depthFirstTreeTraversal: root => {
+    if (root !== null) {
+      console.log(root.val);
+      root.left ? mergeTrees(root.left) : '';
+      root.right ? mergeTrees(root.right) : '';
+    } else {
+      return;
+    }
+  },
+
+  TreeNode,
 }

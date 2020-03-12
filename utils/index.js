@@ -3,6 +3,11 @@ function TreeNode(val) {
   this.left = this.right = null;
 }
 
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+
 module.exports = {
   /**
    * @param {Array} arr
@@ -81,5 +86,37 @@ module.exports = {
     }
   },
 
+  /**
+   * @param {Array<number>} arr
+   * @returns {ListNode | void}
+   */
+  deserializeList: (arr = []) => {
+    if (arr.length === 0) {
+      return;
+    }
+    let counter = 0;
+    const result = new ListNode(0);
+    let node = result;
+
+    while (counter < arr.length) {
+      node.next = new ListNode(arr[counter]);
+      node = node.next;
+      counter++;
+    }
+
+    return result.next
+  },
+
+  /**
+   * @param {ListNode} list
+   * @returns {Array<number>}
+   */
+  serializeList: function serializeList(list) {
+    return list
+      ? [].concat(list.val, serializeList(list.next))
+      : [];
+  },
+
   TreeNode,
+  ListNode,
 }
